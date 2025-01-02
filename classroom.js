@@ -65,13 +65,15 @@ class ClassroomState {
 
     groupToColor = {
         0: "lightcoral",
-        1: "green",
+        1: "thistle",
         2: "yellow",
         3: "orange",
         4: "pink",
-        5: "brown",
-        6: "lightgrey",
-        7: "lightblue"
+        5: "cadetblue",
+        6: "cornsilk",
+        7: "tomato",
+        8: "yellowgreen",
+        9: "royalblue"
     }
 
     mapGroupsToColors(arr) {
@@ -82,9 +84,8 @@ class ClassroomState {
         return new_array;
     }
 
-    group() {
+    group(num_groups) {
         this.clearBoard();
-        const num_groups = 8;
         const num_students = this.state.students.length;
         // Initialize the groups - to change length: 8 to num_groups
         const groups = Array.from({ length: num_groups }, () => []);
@@ -172,8 +173,8 @@ class ClassroomObserver {
                 const last_two = [...sequences][1].pop()
                 tiles[last_one].classList.remove('select-preview');
                 tiles[last_two].classList.remove('select-preview');
-                tiles[last_one].classList.add('zoomed-pair', 'zoomed-pair-left');
-                tiles[last_two].classList.add('zoomed-pair', 'zoomed-pair-right');
+                tiles[last_one].classList.add('zoomed-pair', 'zoomed-pair-top');
+                tiles[last_two].classList.add('zoomed-pair', 'zoomed-pair-bottom');
 
                 return [tiles[last_one], tiles[last_two]];
             } else {
@@ -191,7 +192,7 @@ class ClassroomObserver {
             const handleClickOutside = (event) => {
                 if (Array.isArray(zoomedTiles)) {
                     if (!zoomedTiles[0].contains(event.target) && !zoomedTiles[1].contains(event.target)) {
-                        zoomedTiles.forEach(tile => tile.classList.remove('zoomed-pair', 'zoomed-pair-left', 'zoomed-pair-right'));
+                        zoomedTiles.forEach(tile => tile.classList.remove('zoomed-pair', 'zoomed-pair-top', 'zoomed-pair-bottom'));
                         document.removeEventListener('click', handleClickOutside);
                     }
                 } else {
@@ -310,31 +311,52 @@ class ClassroomObserver {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-
+    // Init state
     const classroomState = new ClassroomState();
     const students = JSON.parse(localStorage.getItem("students"));
     classroomState.populateBoard(students);
-
+    // Init observers
     const classroomObserver = new ClassroomObserver();
     classroomState.addObserver(classroomObserver);
 
-
-
+    // Click events
     const selectButton = document.getElementById("random1");
     selectButton.addEventListener("click", () => {
         classroomState.selectTiles('single');
     })
-
     const select2Button = document.getElementById("random2");
     select2Button.addEventListener("click", () => {
         classroomState.selectTiles('pair');
     })
-
     const groupButton = document.getElementById("create-groups");
+    const popup = document.getElementById("popup");
     groupButton.addEventListener("click", () => {
-        classroomState.group();
-        // classroomState.notifyObservers('group', null)
-    })
+        popup.classList.remove("hidden");
+    });
+
+    // Close the pop-up if the user clicks outside of it
+    popup.addEventListener("click", (event) => {
+        if (event.target === popup) {
+            popup.classList.add("hidden");
+        }
+    });
+
+    const confirmButton = document.getElementById("confirmButton");
+    const numGroupsInput = document.getElementById("numGroups");
+    // Handle the "Confirm" button
+    confirmButton.addEventListener("click", () => {
+        const numGroups = parseInt(numGroupsInput.value, 10);
+        if (isNaN(numGroups) || numGroups < 2 || numGroups > 10) {
+            alert("Please enter a valid number of groups.");
+        } else {
+            popup.classList.add("hidden");
+            classroomState.group(numGroups);
+        }
+    });
+
+
+
+
 
     const resetButton = document.getElementById("reset");
     resetButton.addEventListener("click", () => {

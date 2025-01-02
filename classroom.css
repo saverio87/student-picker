@@ -69,7 +69,42 @@ body {
     /* Smooth slide-in/out */
 }
 
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
+.popup.hidden {
+    display: none;
+}
+
+/* Pop-up container styles
+#popup {} */
+
+/* Pop-up content styles */
+.popup-content {
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#numGroups {
+    margin: 20px 10px;
+    padding: 10px;
+    width: 80%;
+}
 
 .navbar.hidden {
     bottom: -100px;
@@ -85,13 +120,13 @@ body {
 
 
 button {
-    padding: 1em 1em;
-    font-size: 1em;
+    padding: 0.4em 1em;
+    font-size: 1.5em;
     font-weight: bold;
     color: black;
     background-color: #f4c531;
     border: 2px black solid;
-    border-radius: 0.5em;
+    border-radius: 3em;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -103,21 +138,22 @@ button:hover {
 /* Toggle button */
 .toggle-navbar {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #555555;
-    color: #ffffff;
+    bottom: 30px;
+    left: 30px;
+    background-color: #f4c531;
+    color: black;
     border: none;
-    padding: 0.8em 1.2em;
-    border-radius: 3em;
+    padding: 0.3em 0.4em;
+    border-radius: 5em;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 2em;
+    border: 2px solid black;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
 }
 
 .toggle-navbar:hover {
-    background-color: #777777;
+    background-color: #e0b128;
 }
 
 
@@ -159,6 +195,7 @@ button:hover {
 
 .zoomed {
     position: fixed;
+    width: 10em;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(5);
@@ -173,6 +210,7 @@ button:hover {
 
 .zoomed-pair {
     position: fixed;
+    width: 10em;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(4);
@@ -182,13 +220,13 @@ button:hover {
 }
 
 /* For the first tile in the pair */
-.zoomed-pair-left {
+.zoomed-pair-top {
     top: calc(50% - 200px);
     /* Adjust the offset to your desired spacing */
 }
 
 /* For the second tile in the pair */
-.zoomed-pair-right {
+.zoomed-pair-bottom {
     top: calc(50% + 200px);
     /* Adjust the offset to your desired spacing */
 }
