@@ -1,0 +1,194 @@
+/* General styles */
+body {
+    background-color: #f4c531;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Wrapper for the student grid */
+.wrapper {
+    width: 90%;
+    max-width: 70em;
+    background-color: #ffffff;
+    border-radius: 0.6em;
+    padding: 1em;
+    box-shadow: 0 0.9em 2.8em rgba(86, 66, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+/* Student tiles */
+.students-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1em;
+    width: 100%;
+}
+
+.student-tile {
+    background-color: #f4c531;
+    border: 2px solid #333333;
+    border-radius: 0.5em;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.student-tile:hover {
+    background-color: #e0b128;
+}
+
+/* Navbar styles */
+.navbar {
+    position: fixed;
+    /* Start hidden */
+    bottom: -100px;
+    /* Center horizontally */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    /* border-radius: 0.5em; */
+    /* background-color: #ffffff; */
+    /* color: #ffffff; */
+    /* box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2); */
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    padding: 1em;
+    transition: bottom 0.3s ease;
+    /* Smooth slide-in/out */
+}
+
+
+
+.navbar.hidden {
+    bottom: -100px;
+    /* Hidden position */
+}
+
+.navbar:not(.hidden) {
+    bottom: 1em;
+    /* Fully visible position */
+}
+
+
+
+
+button {
+    padding: 1em 1em;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    background-color: #f4c531;
+    border: 2px black solid;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e0b128;
+}
+
+/* Toggle button */
+.toggle-navbar {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: #555555;
+    color: #ffffff;
+    border: none;
+    padding: 0.8em 1.2em;
+    border-radius: 3em;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.toggle-navbar:hover {
+    background-color: #777777;
+}
+
+
+/* Visual effects */
+
+.select-preview {
+    background-color: orange;
+    /* transition:
+        rotate 1s; */
+    animation: rotation 0.5s linear 1;
+}
+
+.change-color {
+    background-color: orange;
+
+}
+
+.select-preview-no-color {
+    transition:
+        rotate 1s;
+    animation: rotation 0.5s linear 1;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+
+    }
+
+    100% {
+        transform: rotate(0deg);
+
+    }
+}
+
+.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(5);
+    /* Center and scale the tile */
+    z-index: 999;
+    /* Bring the zoomed tile to the top */
+    transition: transform 0.5s ease;
+    /* Smooth zoom effect */
+    border: 3px solid #000;
+    /* Optional: Add a border to emphasize zoom */
+}
+
+.zoomed-pair {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(4);
+    z-index: 999;
+    transition: transform 0.5s ease;
+    border: 3px solid #000;
+}
+
+/* For the first tile in the pair */
+.zoomed-pair-left {
+    top: calc(50% - 200px);
+    /* Adjust the offset to your desired spacing */
+}
+
+/* For the second tile in the pair */
+.zoomed-pair-right {
+    top: calc(50% + 200px);
+    /* Adjust the offset to your desired spacing */
+}

@@ -1,0 +1,57 @@
+/* General styles */
+body {
+    background-color: #f4c531;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Wrapper for the student grid */
+.wrapper {
+    width: 40%;
+    min-width: 25em;
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+.studentList {
+    width: 100%;
+    padding: 1em;
+    font-size: 1em;
+    border: 2px solid #333333;
+    border-radius: 0.5em;
+
+}
+
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    padding: 1em;
+    /* Smooth slide-in/out */
+}
+
+button {
+    margin: 0em 1em;
+    padding: 1em 1em;
+    font-size: 1em;
+    font-weight: bold;
+    color: black;
+    background-color: #f4c531;
+    border: 2px black solid;
+    border-radius: 0.5em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #e0b128;
+}
